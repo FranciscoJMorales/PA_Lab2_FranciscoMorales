@@ -131,6 +131,7 @@ namespace PA_Lab2_FranciscoMorales_1223319 {
 			carrera->MoverLiebre();
 			carrera->MoverTortuga();
 			recorrido->Text = carrera->Recorrido();
+			carrera->Final();
 		}
 	}
 	};

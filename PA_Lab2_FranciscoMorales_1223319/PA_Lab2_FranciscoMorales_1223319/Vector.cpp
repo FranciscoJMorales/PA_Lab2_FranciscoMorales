@@ -84,7 +84,7 @@ void Vector::MoverLiebre() {
 		else {
 			*liebre = 3;
 		}
-		Final();
+		finalCarrera = true;
 	}
 	else {
 		switch (*liebre) {
@@ -133,7 +133,7 @@ void Vector::MoverTortuga() {
 		else {
 			*tortuga = 3;
 		}
-		Final();
+		finalCarrera = true;
 	}
 	else {
 		switch (*tortuga) {
@@ -148,21 +148,23 @@ void Vector::MoverTortuga() {
 }
 
 void Vector::Final() {
-	switch (*fin) {
-	case 1:
-		finalCarrera = true;
-		System::Windows::Forms::MessageBox::Show("La liebre gana. Ni hablar", "Fin de la carrera");
-		break;
-	case 2:
-		finalCarrera = true;
-		System::Windows::Forms::MessageBox::Show("¡LA TORTUGA GANA! ¡BRAVO!", "Fin de la carrera");
-		break;
-	case 3:
-		System::Windows::Forms::MessageBox::Show("Es un empate. La carrera se repetirá", "Fin de la carrera");
-		tortuga = &v[0];
-		liebre = &v[0];
-		v[0] = 3;
-		v[70] = 0;
-		break;
+	if (finalCarrera) {
+		switch (*fin) {
+		case 1:
+			System::Windows::Forms::MessageBox::Show("La liebre gana. Ni hablar", "Fin de la carrera");
+			break;
+		case 2:
+			System::Windows::Forms::MessageBox::Show("¡LA TORTUGA GANA! ¡BRAVO!", "Fin de la carrera");
+			break;
+		case 3:
+			tortuga = &v[0];
+			liebre = &v[0];
+			v[0] = 3;
+			v[70] = 0;
+			finalCarrera = false;
+			System::Windows::Forms::MessageBox::Show("Es un empate. La carrera se repetirá", "Fin de la carrera");
+			break;
+		}
 	}
+	
 }
